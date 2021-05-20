@@ -18,42 +18,43 @@ while True:
         agent = open("agent"+name+".txt")
         agent_session = agent.read()
         agent.close()
-    except:
-        count = 0
-    count2 = 0
-    string_session = str(agent_session)
-    client = TelegramClient(StringSession(string_session), api_id, api_hash)
-    client.start()
-    for user in client.iter_participants(chan):
-        if count2 == 12:
-            break
-        else:
-            try:
-                userinfo = client(functions.users.GetFullUserRequest(
-                    id=user.username
-                ))
-                try: 
-                    result = client(functions.contacts.AddContactRequest(
-                        id=user.username,
-                        first_name=userinfo.user.first_name,
-                        last_name=userinfo.user.last_name,
-                        phone = "+91 ",
-                        add_phone_privacy_exception=False
+        count2 = 0
+        string_session = str(agent_session)
+        client = TelegramClient(StringSession(string_session), api_id, api_hash)
+        client.start()
+        for user in client.iter_participants(chan):
+            if count2 == 12:
+                break
+            else:
+                try:
+                    userinfo = client(functions.users.GetFullUserRequest(
+                        id=user.username
                     ))
-
-                    try:
-                        scrap = client(functions.channels.InviteToChannelRequest(
-                            channel=chann,
-                            users=[user.username]
+                    try: 
+                        result = client(functions.contacts.AddContactRequest(
+                            id=user.username,
+                            first_name=userinfo.user.first_name,
+                            last_name=userinfo.user.last_name,
+                            phone = "+91 ",
+                            add_phone_privacy_exception=False
                         ))
-                        count2 = count2+1
-                        print("member added")
+
+                        try:
+                            scrap = client(functions.channels.InviteToChannelRequest(
+                                channel=chann,
+                                users=[user.username]
+                            ))
+                            count2 = count2+1
+                            print("member added")
+                        except:
+                            pass
                     except:
                         pass
                 except:
                     pass
-            except:
-                pass
-    count = count+1    
-print(count*12," Members Scrapped Successfully.")
+        count = count+1    
 
+
+    except:
+        count = 0
+    
