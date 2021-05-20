@@ -6,8 +6,8 @@ from telethon.sessions import StringSession
 from telethon import functions,types
 from telethon.sync import TelegramClient
 from telethon import functions, types
-api_id = "5860415"
-api_hash = "3d153613fe2bc0903bffb82df03a36ae"
+api_id = "4637601"
+api_hash = "f1fb60b360f67f7de164670a3387f154"
 chan = "hindi_english_chatting_group"
 chann = "boyz_girls_chatting"
 count = 0
